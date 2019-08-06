@@ -1,0 +1,36 @@
+<div class="container">
+
+  <h1>Sign-up Form</h1>
+<form (ngSubmit)="onUserSave(f)" #f="ngForm">
+  <div class="form-group">
+    <label>User Email</label>
+    <input name="user_email" required email ngModel #user_email="ngModel" type="text" class="form-control" placeholder="Enter email address">
+    <label class="alert alert-danger" *ngIf="user_email.hasError('required') && !user_email.pristine">Email is required</label>
+    <label class="alert alert-danger" *ngIf="user_email.hasError('email') && !user_email.pristine">Email is invalid</label>
+  </div>
+  <div class="form-group">
+      <label>Name</label>
+      <input name="user_name" required minlength="5" pattern="[a-zA-Z]*" ngModel #user_name="ngModel" type="text" class="form-control" placeholder="Enter your name">
+      <label class="alert alert-danger" *ngIf="user_name.hasError('required') && !user_name.pristine" >name is required</label>
+      <label class="alert alert-danger" *ngIf="user_name.hasError('minlength') && !user_name.pristine" >minimum 5 letters</label>
+      <label class="alert alert-danger" *ngIf="user_name.hasError('pattern') && !user_name.pristine" >Enter only alphabets</label>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input name="user_password" required minlength="8" ngModel #user_password="ngModel" type="text" class="form-control" placeholder="Enter the password">
+        <label class="alert alert-danger" *ngIf="user_password.hasError('required') && !user_password.pristine" >password is required</label>
+        <label class="alert alert-danger" *ngIf="user_password.hasError('minlength') && !user_password.pristine" >minimum 8 charecters</label>
+      </div>
+      <div class="form-group">
+          <label>Mobile number</label>
+          <input name="user_mobile_no" required minlength="10" maxlength="10" pattern="[0-9]*" ngModel #user_mobile_no="ngModel" type="text" class="form-control" placeholder="Enter the mobile number">
+          <label class="alert alert-danger" *ngIf="user_mobile_no.hasError('required') && !user_mobile_no.pristine" >name is required</label>
+          <label class="alert alert-danger" *ngIf="user_mobile_no.hasError('minlength') && !user_mobile_no.pristine" >minimum 10 charecters</label>
+          <label class="alert alert-danger" *ngIf="user_mobile_no.hasError('maxlength') && !user_mobile_no.pristine" >maximum 10 charecters</label>
+          <label class="alert alert-danger" *ngIf="user_mobile_no.hasError('pattern') && !user_mobile_no.pristine" >Enter only digits</label>
+        </div>
+        <div class="form-group">
+          <button [disabled]="!f.valid" type="submit" class="form-control btn btn-primary">Save and Submit</button>
+        </div>
+      </form>
+</div>
