@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TaskdataService } from './taskdata.service';
 
 @Component({
@@ -10,19 +10,25 @@ import { TaskdataService } from './taskdata.service';
 })
 export class TaskdisplayComponent implements OnInit {
 arr:Task[]=[];
+taskData:any;
+errormessage:string='';
 name:string="Task";
-  constructor(private _data:TaskdataService, private _router:Router) { }
+  constructor(private _data:TaskdataService, private _router:Router, private _act:ActivatedRoute) {
+    this.taskData=this._act.snapshot.data["tdata"];
+  }
 
   ngOnInit() {
-    this._data.getAllTasks().subscribe(
-      (data:Task[])=> {
-      this.arr=data;
-      },
-      function(error) {
-        alert(Error);
-      },
-      function() {}
-    );
+    // this._data.getAllTasks().subscribe(
+    //   (data:Task[])=> {
+    //   this.arr=data;
+    //   },
+    //   function(error) {
+    //     alert(Error);
+    //   },
+    //   function() {}
+    // );
+    this.arr=this.taskData.tasks;
+    this.errormessage=this.taskData.errormsg;
   }
 
   onTaskDelete(item:Task) {
@@ -35,29 +41,28 @@ name:string="Task";
   }
 
   onTaskEdit(item:Task) {
-    this._router.navigate(['/edittask',item.Id]);
+    this._router.navigate(['/task/edittask',item.Id]);
   }
 
-  onSideBarClick(value) {
-    if(value!="") {
-      this.arr=this.arr.filter(x=>x.Title.indexOf(value)!= -1);
+  onTaskEditReactive(item){
+    this._router.navigate(['/task/edittaskreactive',item.Id]);
+  }
+
+  // onTaskSideBarClick(value) {
+  //   if(value!="") {
+  //     this.arr=this.arr.filter(x=>x.Status.indexOf(value)!= -1);
+  //   }
+  //   else{
+  //     this._data.getAllTasks().subscribe(
+  //       (data:Task[])=> {
+  //         this.arr=data;
+  //       },
+  //       function(error){
+  //         alert(error);
+  //       },
+  //       function() {}
+
+  //     );
+  //   }
+  //   }
     }
-    else{
-      this._data.getAllTasks().subscribe(
-        (data:Task[])=> {
-          this.arr=data;
-        },
-        function(error){
-          alert(error);
-        },
-        function() {}
-
-      );
-    }
-    }
-    }
-
-
-
-
-

@@ -11,7 +11,8 @@
       <td>{{item.user_name}}</td>
       <td>{{item.user_mobile_no}}</td>
       <td><button class="btn btn-info" (click)="onUserDelete(item)" >Delete</button>
-      <button class="btn btn-info" (click)="onUserEdit(item)" >Edit</button></td>
+      <button class="btn btn-info" (click)="onUserEdit(item)" >Edit</button>
+      <button class="btn btn-info" (click)="onEditUserReactive(item)">EditReactive</button></td>
     </tr>
   </tbody>
   </table>

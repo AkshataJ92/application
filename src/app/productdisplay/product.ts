@@ -9,3 +9,7 @@ export class Product {
     public pro_img: string
   ) {}
 }
+
+export class productResolved{
+  public constructor(public data:any[],public errormsg:string){}
+}

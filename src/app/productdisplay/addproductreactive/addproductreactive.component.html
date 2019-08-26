@@ -1,0 +1,49 @@
+<div class="container">
+  <form [formGroup]="product" ngSubmit="onSubmit()">
+
+    <div class="form-group">
+      <label>Product ID</label>
+      <input formControlName="product_id" type="text" class="form-control" placeholder="Enter your product ID">
+      <label class="alert alert-danger" *ngIf="product.get('product_id').hasError('required') && !product.get('product_id').pristine">Product ID is required</label>
+    </div>
+
+    <div class="form-group">
+        <label>Product Name</label>
+        <input formControlName="product_name" type="text" class="form-control" placeholder="Enter your product name">
+        <label class="alert alert-danger" *ngIf="product.get('product_name').hasError('required') && !product.get('product_name').pristine">Product name is reqired</label>
+      </div>
+
+    <div class="form-group">
+      <label>Product Price</label>
+      <input formControlName="product_price" type="text" class="form-control" placeholder="Enter your product price">
+      <label class="alert alert-danger" *ngIf="product.get('product_price').hasError('required') && !product.get('product_price').pristine">Product price is required</label>
+    </div>
+
+    <div class="form-group">
+      <label>Product Description</label>
+      <input formControlName="product_description" type="text" class="form-control" placeholder="Enter your product description">
+      <label class="alert alert-danger" *ngIf="product.get('product_description').hasError('required') && !product.get('product_description').pristine">Product description is required</label>
+    </div>
+
+    <div class="form-group">
+        <label>Product Quantity</label>
+        <input formControlName="product_quantity" type="text" class="form-control" placeholder="Enter your product quantity">
+        <label class="alert alert-danger" *ngIf="product.get('product_quantity').hasError('required') && !product.get('product_quantity').pristine">Product description is required</label>
+      </div>
+
+    <div class="form-group">
+      <label>Product Mfg</label>
+      <input type="text" class="form-control" placeholder="Enter your product Mfg">
+    </div>
+
+    <div class="form-group">
+      <label>Product Image path</label>
+      <input type="text" class="form-control" placeholder="Enter your product image path">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add new product</button>
+      </div>
+
+  </form>
+</div>

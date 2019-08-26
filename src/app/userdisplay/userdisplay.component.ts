@@ -28,6 +28,9 @@ arr:User[]=[];
     );
   }
   onUserEdit(item:User){
-    this._router.navigate(['/edituser',item.user_email]);
+    this._router.navigate(['/user/edituser',item.user_email]);
+  }
+  onEditUserReactive(item:User){
+    this._router.navigate(['/edituserreactive',item.user_email]);
   }
 }

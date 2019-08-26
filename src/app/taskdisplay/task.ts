@@ -6,3 +6,7 @@ export class Task {
     public Status:string
     ){}
 }
+
+export class taskResolved{
+  public constructor(public data:any[], public errormsg:String){}
+}

@@ -1,22 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Product } from './product';
 import { ProductdataService } from './productdata.service';
 import { Router } from "@angular/router";
+// import { ViewEncapsulation } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-productdisplay',
   templateUrl: './productdisplay.component.html',
-  styleUrls: ['./productdisplay.component.css']
+  styleUrls: ['./productdisplay.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
 export class ProductdisplayComponent implements OnInit {
   name:string='watch';
 arr:Product[]=[];
+loading:boolean=true;
   constructor(private _data:ProductdataService,private _router:Router) {}
 
   ngOnInit() {
+    this.loading=true;
     this._data.getAllProducts().subscribe(
       (data:Product[])=>{
       this.arr=data;
+      this.loading=false;
       },
       function(error) {
         alert(Error);
@@ -48,7 +53,7 @@ arr:Product[]=[];
     );
   }
   onProductEdit(item:Product){
-    this._router.navigate(['/editproduct',item.pro_id]);
+    this._router.navigate(['/productdisplay/editproduct',item.pro_id]);
   }
 }
 
